@@ -1,4 +1,4 @@
-# Hire a Hitman (MySQL)
+# Hire a Hitman (MySQL- Database)
 
 ## Hire a Hitman: plotcrimesforme.com 
 Do you need someone to die? Are you afraid of being caught by the police? Look no further than plotcrimesforme.com! 
