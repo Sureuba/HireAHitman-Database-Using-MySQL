@@ -1,4 +1,5 @@
-# Hire a Hitman (MySQL- Database)
+# Hire a Hitman 
+### A MySQL- Database designed by a team of 3 individuals trying to change social norms, innovate acceptance and social ease
 
 ## Hire a Hitman: plotcrimesforme.com 
 Do you need someone to die? Are you afraid of being caught by the police? Look no further than plotcrimesforme.com! 
