@@ -1,7 +1,7 @@
 # Hire a Hitman 
 A MySQL- Database designed by a team of three individuals trying to change social norms, innovate acceptance in a world there social norms have been hurting our criminals
 
-## Hire a Hitman: plotcrimesforme.com 
+## plotcrimesforme.com 
 Do you need someone to die? Are you afraid of being caught by the police? Look no further than plotcrimesforme.com! 
 Unfortunately, society lacks a structured and secure platform for individuals wishing to organize activities such as hiring hitmen — leading to disorganization, safety risks, and potential exposure to law enforcement. Our motivation comes from the need to address the severe lack of safe platforms for criminal planning, while emphasizing the importance of ease for clients and providing a strong backend database system for connecting you to the right hitman for the job. 
 For the sake of this proposal, plotcrimesforme.com is our satirical web platform designed to address the planning and organizing of hits. Our website offers a highly secure, curated platform that helps clients plan and organize their hits, matching them with hitmen and other necessary services based on their preferences.
