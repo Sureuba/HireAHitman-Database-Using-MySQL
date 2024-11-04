@@ -21,3 +21,16 @@ A client dashboard that allows users to input their target details, select the m
 A backend hitman selection algorithm that recommends professional hitmen based on user preferences and previous success rates. 
 Further search and filter features will be added in order to satisfy further needs.
 
+## What motivates us?
+Due to societal norms, individuals have no access to a safe and secure platform that allows them to efficiently plan certain actions, like the hiring of a hitman. With our website, we aim to target and resolve these issues, as our platform is clear and concise to ensure that the clients are not overwhelmed by the process. Furthermore, we are motivated by the need to ensure anonymity; thus our website is completely incognito, and the hitmen in our database have been vetted to ensure there are no leaks or moles within the system.
+
+## Why plotcrimesforme.com?
+plotcrimesforme.com focuses on a niche area — helping users who are wary of legal repercussions to organize high-stakes plans. Its unique proposition to cater to these specific needs distinguishes it from any conventional organizational platform. Our platform allows for users to create their ideal hit based on their specific desires or requirements, and we then match our client to the best suited hitman, thus ensuring that both sides of the parties are satisfied. Additionally, our platform is a much safer alternative instead of the dark web which not only can be dangerous but can result in a myriad of unwanted consequences. 
+
+Narrowing down on the broad scheme of things, plotcrimesforme.com is a secure and innovative platform designed to help users plan and organize hits. It delivers a specialized service to those who feel constrained by society’s legal boundaries. Overall our site will contribute to the world of underground crime by ensuring anonymity, offering professional recommendations, and allowing clients to carry out their illicit goals in a secure manner.
+
+## Research References
+https://rentahitman.com/
+https://www.kaspersky.com/resource-center/threats/deep-web
+
+
