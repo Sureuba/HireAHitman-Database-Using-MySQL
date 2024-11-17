@@ -30,6 +30,9 @@ plotcrimesforme.com focuses on a niche area — helping users who are wary of le
 
 Narrowing down on the broad scheme of things, plotcrimesforme.com is a secure and innovative platform designed to help users plan and organize hits. It delivers a specialized service to those who feel constrained by society’s legal boundaries. Overall our site will contribute to the world of underground crime by ensuring anonymity, offering professional recommendations, and allowing clients to carry out their illicit goals in a secure manner.
 
+## Changes 
+Refer to the [Changes.md](Changes.md) file on this repository
+
 ## Research References
 https://rentahitman.com/
 https://www.kaspersky.com/resource-center/threats/deep-web
