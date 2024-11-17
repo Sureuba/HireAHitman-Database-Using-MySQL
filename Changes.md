@@ -13,5 +13,6 @@ who are qualified depending on their skills they inputed, and the clients prefer
 which will lead the client and hitmen to either successfully match and both parties will then exchange information (under our security). Or if the hitman declines the offer the client will be shown the list of eligable 
 hitmen again without the declined offer this time. 
 
+**Changes**
 From this problem we realized that we do not have to change our ER diagram or relational model since our client and hitman are still in a 1:1 relationship. At the end of choosing a hitman for their dream hit the client 
 will still have only 1 hitman for 1 dream hit (target).
