@@ -1,7 +1,7 @@
 # Changes & Challenges
 
 ### Problems arise when allowing clients to choose a "Dream Hit"
-Some of the recent changes we were figuring out in our HIPO and DFD diagrams for progress report 3 was the ability for clients to be able to choose the hitman for the job or if they should not be able to choose at all. 
+Some of the recent changes we were figuring out in our HIPO and DFD diagrams for **progress report 3** was the ability for clients to be able to choose the hitman for the job or if they should not be able to choose at all. 
 We added an option for the client to look through an outputted list of hitmen that match their specifications for the target they want gone. These hitmen will be outputed as a list from all the eligable hitman 
 who are qualified depending on their skills they inputed, and the clients preferred hit methods. This match can result in many hitmen who qualify for the job and thus cause us a problem when deciding for our users.
 
