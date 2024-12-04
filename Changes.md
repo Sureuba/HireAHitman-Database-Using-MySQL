@@ -9,7 +9,7 @@ who are qualified depending on their skills they inputed, and the clients prefer
 **Solution Two:** We give clients the choice to pick from a list of eligable hitmen who can accept or decline the offer (if they have second thoughts)</br>
 **Solution Three:** We let the hitman accept or decline, and the client can rematch using a "REMATCH" button based on if they don't like the hitman chosen for their dream hit</br>
 
-**Solution We Chose:** We chose solution 2 and decided to have our frontend system output a list of all the hitmen who work out for the specified dream hit from the clients side. The hitmen can still accept and decline
+**Solution We Chose:** We chose solution 1 and decided to give our user the best choice chosen by us. 
 which will lead the client and hitmen to either successfully match and both parties will then exchange information (under our security). Or if the hitman declines the offer the client will be shown the list of eligable 
 hitmen again without the declined offer this time. 
 
