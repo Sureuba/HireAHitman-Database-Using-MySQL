@@ -1,7 +1,7 @@
 # Hire a Hitman 
 A MySQL- Database designed by a team of three individuals trying to change social norms, innovate acceptance in a world there social norms have been hurting our criminals
 
-## plotcrimesforme.com 
+## hireahitman.com 
 Do you need someone to die? Are you afraid of being caught by the police? Look no further than plotcrimesforme.com! 
 Unfortunately, society lacks a structured and secure platform for individuals wishing to organize activities such as hiring hitmen — leading to disorganization, safety risks, and potential exposure to law enforcement. Our motivation comes from the need to address the severe lack of safe platforms for criminal planning, while emphasizing the importance of ease for clients and providing a strong backend database system for connecting you to the right hitman for the job. 
 For the sake of this proposal, plotcrimesforme.com is our satirical web platform designed to address the planning and organizing of hits. Our website offers a highly secure, curated platform that helps clients plan and organize their hits, matching them with hitmen and other necessary services based on their preferences.
@@ -25,7 +25,7 @@ Further search and filter features will be added in order to satisfy further nee
 ## What motivates us?
 Due to societal norms, individuals have no access to a safe and secure platform that allows them to efficiently plan certain actions, like the hiring of a hitman. With our website, we aim to target and resolve these issues, as our platform is clear and concise to ensure that the clients are not overwhelmed by the process. Furthermore, we are motivated by the need to ensure anonymity; thus our website is completely incognito, and the hitmen in our database have been vetted to ensure there are no leaks or moles within the system.
 
-## Why plotcrimesforme.com?
+## Why hireahitman.com?
 plotcrimesforme.com focuses on a niche area — helping users who are wary of legal repercussions to organize high-stakes plans. Its unique proposition to cater to these specific needs distinguishes it from any conventional organizational platform. Our platform allows for users to create their ideal hit based on their specific desires or requirements, and we then match our client to the best suited hitman, thus ensuring that both sides of the parties are satisfied. Additionally, our platform is a much safer alternative instead of the dark web which not only can be dangerous but can result in a myriad of unwanted consequences. 
 
 Narrowing down on the broad scheme of things, plotcrimesforme.com is a secure and innovative platform designed to help users plan and organize hits. It delivers a specialized service to those who feel constrained by society’s legal boundaries. Overall our site will contribute to the world of underground crime by ensuring anonymity, offering professional recommendations, and allowing clients to carry out their illicit goals in a secure manner.
