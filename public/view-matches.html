@@ -1,0 +1,151 @@
+
+<!-- create view-matches html file --> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Matches</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="view-matches-container">
+    <h1>MATCH FOUND</h1>
+    <p id="usernameDisplay"></p> <!-- display the logged-in username -->
+
+    <div id="matchesContainer">
+        <div class="hitman-header">
+            <span>Hitman:</span>
+            <h2 id="hitmanCodeName"></h2> <!-- display the code name -->
+        </div>
+    </div>
+    
+    <p id="error-message" class="error-message"></p>
+
+    <!-- Add button for hit-specficiation and client-dashboard Button -->
+    <div class="button-container">
+      <button onclick="window.location.href='/hit-specifications.html'">Change Preferences</button>
+    
+        <button onclick="window.location.href='/client-dashboard.html'">Back to Dashboard</button>
+
+      </div>
+
+      
+  </div>
+  <div class="decoy-buttons">
+    <div class="decoy-btn">Contact This Hitman?</div>
+  </div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', async () => {
+  let username = '';
+  try {
+    // get the logged in user's username from server
+    const userResponse = await fetch('/get-current-user');
+    if (!userResponse.ok) throw new Error('Failed to fetch user info');
+    const userData = await userResponse.json();
+    username = userData.username;
+    document.getElementById('usernameDisplay').textContent = `Welcome, ${username}`;
+  } catch (error) {
+    console.error('Error fetching user info:', error);
+    document.getElementById('error-message').textContent = 'Error fetching user information.';
+    return;
+  }
+
+  // get the matched hitmen based on the client's selected in hit-sepcfication
+  try {
+    const matchResponse = await fetch('/view-matches');
+    if (!matchResponse.ok) {
+      throw new Error('Failed to fetch match data');
+    }
+    const matchData = await matchResponse.json();
+
+    const matchesContainer = document.getElementById('matchesContainer');
+    if (matchData.match) {
+      const match = matchData.match;
+
+      // check if the match score is 0 
+      if (match.score === 0) {
+        // if the score is 0 redirect to no-matches.html
+        window.location.href = '/no-matches.html';
+        return; 
+      }
+
+      // Function to change the format of date
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toISOString().split('T')[0]; 
+      }
+
+      // create the container for the match information
+      const matchDiv = document.createElement('div');
+      matchDiv.classList.add('hitman-details'); 
+
+      matchDiv.innerHTML = `
+        <div class="hitman-code-name">
+          <h2>${match.hitman.CodeName.toUpperCase()}</h2>
+        </div>
+        <div class="hitman-specifications">
+          <div class="spec-item">
+            <strong>Weapon Preference:</strong> <span>${match.hitman.HWeapon}</span>
+          </div>
+          <div class="spec-item">
+            <strong>Location Preference:</strong> <span>${match.hitman.HState}</span>
+          </div>
+          <div class="spec-item">
+            <strong>Payment Method:</strong> <span>${match.hitman.HDebtSpecification}</span>
+          </div>
+          <div class="spec-item">
+            <strong>Mind Game:</strong> <span>${match.hitman.HPsychTechnique}</span>
+          </div>
+          <div class="spec-item">
+            <strong>Communication Method:</strong> <span>${match.hitman.HCommunication}</span>
+          </div>
+          <div class="spec-item">
+            <strong>Timeline:</strong> <span>${formatDate(match.hitman.HTimeline)}</span> <!-- Format the date here -->
+          </div>
+          <div class="spec-item">
+            <strong>Match Score:</strong> <span>${Math.round(match.score / 6 * 100)}%</span>
+
+          </div>
+        </div>
+      `;
+      
+      matchesContainer.appendChild(matchDiv);
+    } else {
+      window.location.href = '/no-matches.html';
+      matchesContainer.innerHTML = '<p>No matches found.</p>';
+    }
+  } catch (error) {
+    console.error('Error fetching matches:', error);
+    document.getElementById('error-message').textContent = 'Error loading match data.';
+  }
+});
+  </script>
+
+  <style>
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #cc0000;
+      transform: translateY(-2px);
+    }
+  </style>
+</body>
+</html>

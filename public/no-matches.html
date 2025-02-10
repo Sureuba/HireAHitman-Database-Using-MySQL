@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No Matches</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="no-matches-container">
+    <h1>No Matches Found</h1>
+    <p>No matches found with a score of 0. Please update your preferences.</p>
+    <button onclick="window.location.href='/hit-specifications.html'">Update Preferences</button>
+  </div>
+
+  <style>
+    .no-matches-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background-color: #131313;
+      color: #e0e0e0;
+      text-align: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #ff4d4d;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</body>
+</html>

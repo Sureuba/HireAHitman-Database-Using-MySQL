@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hit Specifications</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Hit Specifications</h1>
+    <p id="usernameDisplay"></p> <!--  display the logged-in username -->
+    <form id="update-profile-form">
+      <div>
+        <label for="weapon">Weapon Preference:</label>
+        <select id="weapon" name="weapon" required>
+          <option value="">Select a weapon (Type, KillMethod)</option>
+          <!-- weapon options  populated from mysql -->
+        </select>
+      </div>
+
+      <div>
+        <label for="location">Location Preference:</label>
+        <select id="location" name="location" required>
+          <option value="">Select a location</option>
+          <!-- location options  populated from mysql-->
+        </select>
+      </div>
+
+      <div>
+        <label for="payment">Payment Demands:</label>
+        <select id="payment" name="payment" required>
+          <option value="">Select a payment method</option>
+          <!-- payment options populated from mysql-->
+        </select>
+      </div>
+
+      <div>
+        <label for="mind-game">Mind Game Preference:</label>
+        <select id="mind-game" name="mind-game" required>
+          <option value="">Select a mind game (Technique, RiskFactor)</option>
+          <!-- mind gaame options populated from mysql-->
+        </select>
+      </div>
+
+      <div>
+        <label for="timeline">Preferred Timeline:</label>
+        <select id="timeline" name="timeline" required>
+          <option value="">Select a timeline</option>
+          <!-- timeline options populated from mysql-->
+        </select>
+      </div>
+
+      <div>
+        <label for="communication">Communication Preference:</label>
+        <select id="communication" name="communication" required>
+          <option value="">Select a communication method (Anonymity, Type)</option>
+          <!-- communication options populated from mysql-->
+        </select>
+      </div>
+
+    <div>
+        <label for="alias">Alias:</label>
+        <input
+        type="text"
+        id="alias"
+        name="alias"
+        placeholder="Enter your alias"
+        required
+        />
+    </div>
+
+    <div>
+        <label for="motive">Motive:</label>
+        <input
+        type="text"
+        id="motive"
+        name="motive"
+        placeholder="Enter your motive"
+        required
+        />
+    </div>
+      <div>
+        <button type="submit">Update Profile</button>
+      </div>
+    </form>
+    <p id="error-message" style="color: red;"></p>
+    <p id="success-message" style="color: green;"></p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let username = '';
+
+      try {
+        // fetch logged-in user's username (from server)
+        const userResponse = await fetch('/get-current-user');
+        if (!userResponse.ok) {
+          throw new Error('Failed to fetch user info');
+        }
+        const userData = await userResponse.json();
+        username = userData.username;
+        document.getElementById('usernameDisplay').textContent = `Welcome, ${username}`;
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+        document.getElementById('error-message').textContent = 'Error fetching user information.';
+        return;
+      }
+
+      // get weapon options from server
+      try {
+      const weaponResponse = await fetch('http://localhost:5000/weapons');
+      if (!weaponResponse.ok) {
+        throw new Error('Failed to fetch weapons');
+      }
+      const weapons = await weaponResponse.json();
+      const weaponSelect = document.getElementById('weapon');
+
+      weapons.forEach(weapon => {
+    const option = document.createElement('option');
+
+    // log entire weapon object + check the structure
+    console.log('Weapon object:', weapon);
+
+    // if ResultingKillMethod DNE, log a message
+    const resultingKillMethod = weapon.ResultingKillMethod ? weapon.ResultingKillMethod : 'Unknown kill method';
+    
+    // log val of  ResultingKillMethod (make sure fetched ocrrectly)
+    console.log('ResultingKillMethod:', resultingKillMethod);
+
+    // custom string to include multiple attributes
+    option.value = weapon.Type, weapon.resultingKillMethod;
+    option.textContent = `${weapon.Type}, ${resultingKillMethod}`;
+    
+    weaponSelect.appendChild(option);
+  });
+  } catch (error) {
+    console.error('Error fetching weapons:', error);
+    document.getElementById('error-message').textContent = 'Error loading weapon data.';
+    return;
+  }
+
+
+      // get location options from serveer
+      try {
+        const locationResponse = await fetch('http://localhost:5000/locations');
+        if (!locationResponse.ok) {
+          throw new Error('Failed to fetch locations');
+        }
+        const locations = await locationResponse.json();
+        const locationSelect = document.getElementById('location');
+        locations.forEach(location => {
+          const option = document.createElement('option');
+          option.value = location.State;
+          option.textContent = `${location.Landmark}, ${location.City}, ${location.State}`;
+          locationSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+        document.getElementById('error-message').textContent = 'Error loading location data.';
+        return;
+      }
+
+      // get payment options from server
+      try {
+        const paymentResponse = await fetch('http://localhost:5000/payments');
+        if (!paymentResponse.ok) {
+          throw new Error('Failed to fetch payments');
+        }
+        const payments = await paymentResponse.json();
+        const paymentSelect = document.getElementById('payment');
+        payments.forEach(payment => {
+          const option = document.createElement('option');
+          option.value = payment.DebtSpecific;
+          option.textContent = `${payment.DebtSpecific} - ${payment.PBonus}`;
+          paymentSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching payments:', error);
+        document.getElementById('error-message').textContent = 'Error loading payment data.';
+        return;
+      }
+
+      // get mind game options from server
+      try {
+        const mindGameResponse = await fetch('http://localhost:5000/mind-games');
+        if (!mindGameResponse.ok) {
+          throw new Error('Failed to fetch mind games');
+        }
+        const mindGames = await mindGameResponse.json();
+        const mindGameSelect = document.getElementById('mind-game');
+        mindGames.forEach(mindGame => {
+          const option = document.createElement('option');
+          option.value = mindGame.Technique, mindGame.RiskFactor;
+          option.textContent = `${mindGame.Technique}, ${mindGame.RiskFactor}`;;
+          mindGameSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching mind games:', error);
+        document.getElementById('error-message').textContent = 'Error loading mind game data.';
+        return;
+      }
+
+      // COMMUNICATION
+      try {
+      const commResponse = await fetch('http://localhost:5000/communications');
+      if (!commResponse.ok) {
+        throw new Error('Failed to fetch comm methods');
+      }
+      const comms = await commResponse.json();
+      console.log('Communication data:', comms);  // log
+      const commSelect = document.getElementById('communication');
+      comms.forEach(comm => {
+        if (comm.Anonymity) {
+          const option = document.createElement('option');
+          option.value = comm.Anonymity, comm.CommunicationMedium;
+            option.textContent = `${comm.Anonymity}, ${comm.CommunicationMedium}`;
+          commSelect.appendChild(option);
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching comm method:', error);
+      document.getElementById('error-message').textContent = 'Error loading comm data.';
+    }
+
+      try {
+  const timelineResponse = await fetch('http://localhost:5000/timelines');
+  if (!timelineResponse.ok) {
+    throw new Error('Failed to fetch timelines');
+  }
+  const timelines = await timelineResponse.json();
+  const timelineSelect = document.getElementById('timeline');
+
+  timelines.forEach(timeline => {
+    // format FinalDueDate to display only the date part (YYYY-MM-DD) SO IT LOOKS PRETTY
+    const formattedDate = new Date(timeline.FinalDueDate).toISOString().split('T')[0];
+
+    const option = document.createElement('option');
+    option.value = timeline.FinalDueDate;
+
+    // option.textContent better 
+    option.textContent = `${timeline.TimeRange} - ${timeline.TBonus} (Due: ${formattedDate})`;
+    timelineSelect.appendChild(option);
+  });
+} catch (error) {
+  console.error('Error fetching timelines:', error);
+  document.getElementById('error-message').textContent = 'Error loading timeline data.';
+  return;
+}
+
+
+
+      // for form submission
+      const form = document.getElementById('update-profile-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const selectedWeapon = document.getElementById('weapon').value;
+        const selectedLocation = document.getElementById('location').value;
+        const selectedPayment = document.getElementById('payment').value;
+        const selectedMindGame = document.getElementById('mind-game').value;
+        const selectedCommunication = document.getElementById('communication').value;
+        const selectedTimeline = document.getElementById('timeline').value;
+        const inputtedAlias = document.getElementById('alias').value;
+        const inputtedMotive = document.getElementById('motive').value;
+        
+
+
+        if (!selectedWeapon || !selectedLocation || !selectedPayment || !selectedMindGame || !selectedCommunication || !selectedTimeline) {
+          document.getElementById('error-message').textContent = 'Please select all preferences.';
+          return;
+        }
+
+        try {
+          await fetch('http://localhost:5000/update-c-weapon-preference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, weaponPreference: selectedWeapon })
+          });
+
+          await fetch('http://localhost:5000/update-c-location-preference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, locationPreference: selectedLocation })
+          });
+
+          await fetch('http://localhost:5000/update-c-payment-preference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, paymentPreference: selectedPayment })
+          });
+
+          await fetch('http://localhost:5000/update-c-mind-game-preference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, mindGamePreference: selectedMindGame })
+          });
+
+          await fetch('http://localhost:5000/update-c-communication-preference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, communicationPreference: selectedCommunication })
+          });
+
+          await fetch('http://localhost:5000/update-c-timeline-preference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, timelinePreference: selectedTimeline })
+          });
+
+          await fetch('http://localhost:5000/update-c-alias', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, aliasPreference: inputtedAlias })
+          });
+
+          await fetch('http://localhost:5000/update-c-motive', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, motivePref: inputtedMotive })
+          });
+
+          document.getElementById('success-message').textContent = 'Preferences updated successfully!';
+          document.getElementById('error-message').textContent = '';
+          
+          // redirect to client dashboard page
+          window.location.href = '/view-matches.html';  // to redirect
+        } catch (error) {
+          console.error('Error updating preferences:', error);
+          document.getElementById('error-message').textContent = 'Error updating preferences.';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

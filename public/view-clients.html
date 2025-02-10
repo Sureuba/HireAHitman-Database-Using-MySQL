@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Targets</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>View Targets</h1>
+    <div class="matches-panel">
+      <h2>Target Information</h2>
+      <ul id="targets-list">
+        <!-- Target information will be dynamically rendered here -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Fetch and render target data when the page loads
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('/view-targets'); // Fetch data from the server
+        if (!response.ok) throw new Error('Failed to fetch targets');
+
+        const data = await response.json();
+        const list = document.getElementById('targets-list');
+
+        if (data.length > 0) {
+          data.forEach((target) => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+              <strong>Name:</strong> ${target.TName}<br>
+              <strong>Address:</strong> ${target.TAddress}<br>
+              <strong>Age:</strong> ${target.TAge}<br>
+              <strong>Threat Level:</strong> ${target.TThreatLevel}<br>
+              <strong>Height:</strong> ${target.THeight}<br>
+              <strong>Approx. Weight:</strong> ${target.TApproxWeight}<br>
+              <strong>Eye Color:</strong> ${target.TEyeColour}<br>
+              <strong>Hair Color:</strong> ${target.THairColour}
+            `;
+            list.appendChild(listItem);
+          });
+        } else {
+          list.innerHTML = '<li>No targets found. Please check again later.</li>';
+        }
+      } catch (err) {
+        console.error('Error fetching targets:', err);
+        const list = document.getElementById('targets-list');
+        list.innerHTML = '<li>Failed to fetch targets. Please try again later.</li>';
+      }
+    });
+  </script>
+</body>
+</html>

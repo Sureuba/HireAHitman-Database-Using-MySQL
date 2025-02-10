@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up as Client</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Sign Up as Client</h1>
+
+  <!-- sign-up form for Cclient -->
+  <form id="signupForm" method="POST">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+    </div>
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+    // for the signup form submission
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // push sign up data 
+      fetch('/signup-client', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Signup successful') {
+          alert('Signup successful! You can now log in as Client.');
+          window.location.href = '/';  // go back to the login page
+        } else {
+          alert('Signup failed!');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+      });
+    });
+  </script>
+</body>
+</html>
